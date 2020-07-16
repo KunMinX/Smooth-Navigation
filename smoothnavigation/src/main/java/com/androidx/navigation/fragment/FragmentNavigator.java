@@ -99,6 +99,7 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         mFragmentManager.popBackStack(
                 generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        mFragmentManager.getFragments().remove(mBackStack.size() - 1);
         mBackStack.removeLast();
         return true;
     }
@@ -178,8 +179,8 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim);
         }
 
-        if (mFragmentManager.getFragments().size() > 0) {
-            ft.hide(mFragmentManager.getFragments().get(mFragmentManager.getFragments().size() - 1));
+        if (mBackStack.size() > 0) {
+            ft.hide(mFragmentManager.getFragments().get(mBackStack.size() - 1));
             ft.add(mContainerId, frag);
         } else {
             ft.replace(mContainerId, frag);
