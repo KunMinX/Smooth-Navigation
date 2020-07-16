@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.androidx.navigation;
+package com.androidx.navigation.fragment;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -38,7 +38,7 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigator;
 import androidx.navigation.NavigatorProvider;
 
-import com.kunminx.puremusic.R;
+import com.androidx.navigation.R;
 
 
 /**

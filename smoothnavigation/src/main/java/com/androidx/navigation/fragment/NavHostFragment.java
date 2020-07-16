@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.androidx.navigation;
+package com.androidx.navigation.fragment;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,7 +37,7 @@ import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
 import androidx.navigation.Navigator;
 
-import com.kunminx.puremusic.R;
+import com.androidx.navigation.R;
 
 
 /**
@@ -56,7 +56,7 @@ import com.kunminx.puremusic.R;
  *            android:layout_width="match_parent"
  *            android:layout_height="match_parent"
  *            android:id="@+id/my_nav_host_fragment"
- *            android:name="NavHostFragment"
+ *            android:name="androidx.navigation.fragment.NavHostFragment"
  *            app:navGraph="@navigation/nav_sample"
  *            app:defaultNavHost="true" /&gt;
  *    &lt;android.support.design.widget.NavigationView

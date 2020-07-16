@@ -51,5 +51,5 @@ publish {
     publishVersion = theVersionName
     desc = 'for navigate by show hide'
     licences = ['Apache-2.0']
-    website = 'https://github.com/KunMinX/Jetpack-MVVM-Scaffold'
+    website = 'https://github.com/KunMinX/SmoothNavigation'
 }
