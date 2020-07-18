@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.kunminx.eventlivedata"
+        applicationId "com.kunminx.smoothnavigation"
 
         minSdkVersion 23
         targetSdkVersion 29
