@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.androidx.navigation.fragment;
+package androidx.navigation.fragment;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 
-def theVersionName = "2.9.7-beta1"
+def theVersionName = "2.9.7-beta4"
 
 android {
     compileSdkVersion 29
@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 2090701
+        versionCode 2090704
         versionName theVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,6 +28,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
+        options.encoding = 'UTF-8'
     }
 }
 
@@ -47,7 +54,7 @@ publish {
     userOrg = 'architecture'
     repoName = 'maven'
     groupId = 'com.kunminx.archi'
-    artifactId = 'smoothnavigation'
+    artifactId = 'smooth-navigation'
     publishVersion = theVersionName
     desc = 'for navigate by show hide'
     licences = ['Apache-2.0']
