@@ -1,8 +1,10 @@
 
 # Smooth-Navigation
 
+提供安全可靠的 Navigation 操作，解决 GitHub 上开源的 "Navigation Add Hide 修改版" 普遍存在的 "popUpToInclusive 导致 Fragment 不符预期地加载" 等问题。
+
 ```groovy
-implementation 'com.kunminx.archi:smooth-navigation:2.9.7-beta4'
+implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
 ```
 
 ```
