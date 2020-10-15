@@ -56,6 +56,9 @@ public class ListFragment extends BaseFragment {
         binding.setClick(new ClickProxy());
 
         MomentAdapter adapter = new MomentAdapter(mActivity.getApplicationContext());
+        adapter.setOnItemClickListener((item, position) -> {
+            nav().navigate(R.id.action_listFragment_to_detailFragment);
+        });
         binding.setAdapter(adapter);
 
         return view;
