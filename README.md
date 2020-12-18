@@ -14,7 +14,7 @@ implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
 如果使用 kotlin 拓展，那么在上述的基础上，添加如下依赖即可：
 
 ```groovy
-implementation('androidx.navigation:navigation-fragment-ktx:2.3.1') {
+implementation('androidx.navigation:navigation-fragment-ktx:2.3.2') {
     exclude group: 'androidx.navigation', module: "navigation-fragment"
 }
 ```
