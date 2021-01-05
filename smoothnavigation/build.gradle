@@ -5,12 +5,12 @@ apply plugin: 'com.novoda.bintray-release'
 def theVersionName = "3.3.2-beta5"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 3030205
         versionName theVersionName
 
@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "androidx.fragment:fragment:1.2.5"
-    implementation 'androidx.navigation:navigation-runtime:2.3.1'
+    implementation 'androidx.navigation:navigation-runtime:2.3.2'
 
 }
 
