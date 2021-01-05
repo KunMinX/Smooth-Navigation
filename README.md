@@ -1,4 +1,6 @@
 
+![](https://i.loli.net/2021/01/05/sP9zMZBJtrKfh8j.png)
+
 # Smooth-Navigation
 
 ## 中文说明
