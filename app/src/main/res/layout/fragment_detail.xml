@@ -94,5 +94,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_locate"
             app:navGraph="@navigation/nav_graph_child" />
 
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="@string/tip_child"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
