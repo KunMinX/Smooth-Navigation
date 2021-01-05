@@ -8,5 +8,6 @@
     <string name="tip_of_enter_moment">请输入动态</string>
     <string name="save">保存</string>
     <string name="edit">编辑</string>
+    <string name="jump">跳转</string>
 
 </resources>
