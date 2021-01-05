@@ -8,7 +8,7 @@
 **使用方式：** 在 gradle 中添加 `com.kunminx.archi:smooth-navigation` 依赖，并将原有的 `androidx.navigation:navigation-fragment` 或修改版依赖 移除（否则在编译过程中会遭到原有依赖的覆盖）。
 
 ```groovy
-implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
+implementation 'com.kunminx.archi:smooth-navigation:3.8.2-beta1'
 ```
 
 如果使用 kotlin 拓展，那么在上述的基础上，添加如下依赖即可：
@@ -26,16 +26,20 @@ Provides safe and reliable Navigation operations, and solves the common problem 
 **How to use:** Add `com.kunminx.archi:smooth-navigation` dependency in gradle, and remove the original `androidx.navigation:navigation-fragment` or modified version dependency (otherwise the original Dependent coverage).
 
 ```groovy
-implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
+implementation 'com.kunminx.archi:smooth-navigation:3.8.2-beta1'
 ```
 
 If you use kotlin extension, then on the basis of the above, add the following dependencies:
 
 ```groovy
-implementation('androidx.navigation:navigation-fragment-ktx:2.3.1') {
+implementation('androidx.navigation:navigation-fragment-ktx:2.3.2') {
     exclude group: 'androidx.navigation', module: "navigation-fragment"
 }
 ```
+
+## Thanks
+
+感谢 @孙致远、@别睡太晚、@雅俗共赏 等小伙伴对 popUpToInclusive 以及嵌套 child 等场景下容错问题的反馈和测试 Demo 的提供。
 
 ## License
 
