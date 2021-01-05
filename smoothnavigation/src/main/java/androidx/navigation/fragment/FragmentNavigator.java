@@ -99,7 +99,14 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         mFragmentManager.popBackStack(
                 generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        mFragmentManager.getFragments().remove(mBackStack.size() - 1);
+
+        //TODO Tip 2: Increase fault tolerance to deal with incorrectly-timed jumps in the case of nested sub-fragments
+        int removeIndex = mBackStack.size() - 1;
+        if (removeIndex >= mFragmentManager.getFragments().size()) {
+            removeIndex = mFragmentManager.getFragments().size() - 1;
+        }
+        mFragmentManager.getFragments().remove(removeIndex);
+
         mBackStack.removeLast();
         return true;
     }
@@ -179,14 +186,19 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim);
         }
 
-        if (mBackStack.size() > 0) {
+        //TODO Tip 1: Solve the unexpected display of popUpToInclusive under the add hide solution
+        //TODO Tip 2: Increase fault tolerance to deal with incorrectly-timed jumps in the case of nested sub-fragments
+        Log.d("Nav", " --mBackStack.size:" + mBackStack.size()
+                + " getFragments().size():" + mFragmentManager.getFragments().size());
+        if (mBackStack.size() > 0 && mFragmentManager.getFragments().size() > 0) {
+            Log.d("Nav"," --Hide --Add");
             ft.hide(mFragmentManager.getFragments().get(mBackStack.size() - 1));
             ft.add(mContainerId, frag);
         } else {
+            Log.d("Nav"," --Replace");
             ft.replace(mContainerId, frag);
         }
 
-        //        ft.replace(mContainerId, frag);
         ft.setPrimaryNavigationFragment(frag);
 
         final @IdRes int destId = destination.getId();
