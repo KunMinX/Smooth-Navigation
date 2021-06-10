@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.kunminx.smoothnavigation"
@@ -27,19 +26,8 @@ android {
         abortOnError false
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
-
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
 }
@@ -47,23 +35,23 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.material:material:1.3.0-beta01'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'
 
-    implementation 'androidx.navigation:navigation-runtime:2.3.2'
+    implementation 'androidx.navigation:navigation-runtime:2.3.5'
 
     //使用 kotlin 拓展的话，添加这个依赖即可，
     //通过 exclude 把对官方 java 包的依赖排除了，引用默认指向 smooth-Navigation
@@ -71,17 +59,16 @@ dependencies {
         exclude group: 'androidx.navigation', module: "navigation-fragment"
     }
 
-//    implementation 'com.kunminx.archi:smooth-navigation:3.3.2-beta5'
     implementation project(':smoothnavigation')
 
-    implementation 'com.kunminx.archi:unpeek-livedata:4.4.1-beta1'
+    implementation 'com.kunminx.arch:unpeek-livedata:5.0.1-beta1'
 
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation 'com.yanzhenjie.permission:x:2.0.1'
 
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.8.7'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
