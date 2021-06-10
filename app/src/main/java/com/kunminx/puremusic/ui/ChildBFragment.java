@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentChildBBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.DetailViewModel;
 
 /**
@@ -35,14 +35,14 @@ import com.kunminx.puremusic.ui.state.DetailViewModel;
  */
 public class ChildBFragment extends BaseFragment {
 
-    private DetailViewModel mDetailViewModel;
-    private SharedViewModel mSharedViewModel;
+    private DetailViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDetailViewModel = getFragmentViewModel(DetailViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mState = getFragmentScopeViewModel(DetailViewModel.class);
+        mEvent = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Nullable

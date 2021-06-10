@@ -28,7 +28,7 @@ import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentListBinding;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.ListViewModel;
 
 /**
@@ -36,14 +36,14 @@ import com.kunminx.puremusic.ui.state.ListViewModel;
  */
 public class ListFragment extends BaseFragment {
 
-    private ListViewModel mListViewModel;
-    private SharedViewModel mSharedViewModel;
+    private ListViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mListViewModel = getFragmentViewModel(ListViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mState = getFragmentScopeViewModel(ListViewModel.class);
+        mEvent = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Nullable
@@ -52,7 +52,7 @@ public class ListFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         FragmentListBinding binding = FragmentListBinding.bind(view);
         binding.setLifecycleOwner(this);
-        binding.setVm(mListViewModel);
+        binding.setVm(mState);
         binding.setClick(new ClickProxy());
 
         MomentAdapter adapter = new MomentAdapter(mActivity.getApplicationContext());
@@ -68,16 +68,16 @@ public class ListFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mListViewModel.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
-            mListViewModel.list.setValue(moments);
+        mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
+            mState.list.setValue(moments);
         });
 
-        mSharedViewModel.moment.observeInFragment(this, moment -> {
-            mListViewModel.list.getValue().add(0, moment);
-            mListViewModel.list.setValue(mListViewModel.list.getValue());
+        mEvent.moment.observe(this, moment -> {
+            mState.list.getValue().add(0, moment);
+            mState.list.setValue(mState.list.getValue());
         });
 
-        mListViewModel.requestList();
+        mState.requestList();
     }
 
     public class ClickProxy {

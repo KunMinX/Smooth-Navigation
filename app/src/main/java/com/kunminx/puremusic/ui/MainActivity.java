@@ -25,7 +25,7 @@ import androidx.databinding.DataBindingUtil;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.ActivityMainBinding;
 import com.kunminx.puremusic.ui.base.BaseActivity;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.MainViewModel;
 
 /**
@@ -34,19 +34,19 @@ import com.kunminx.puremusic.ui.state.MainViewModel;
 
 public class MainActivity extends BaseActivity {
 
-    private MainViewModel mMainViewModel;
-    private SharedViewModel mSharedViewModel;
+    private MainViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainViewModel = getActivityViewModel(MainViewModel.class);
-        mSharedViewModel = getAppViewModelProvider(this).get(SharedViewModel.class);
+        mState = getActivityScopeViewModel(MainViewModel.class);
+        mEvent = getApplicationScopeViewModel(SharedViewModel.class);
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setClick(new ClickProxy());
 
-        mSharedViewModel.moment.observeInActivity(this, moment -> {
+        mEvent.moment.observe(this, moment -> {
             Toast.makeText(this, moment.getContent(), Toast.LENGTH_SHORT).show();
         });
     }

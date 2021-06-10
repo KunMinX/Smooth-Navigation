@@ -30,7 +30,7 @@ import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentEditorBinding;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.EditorViewModel;
 
 import java.util.UUID;
@@ -40,14 +40,14 @@ import java.util.UUID;
  */
 public class EditorFragment extends BaseFragment {
 
-    private EditorViewModel mEditorViewModel;
-    private SharedViewModel mSharedViewModel;
+    private EditorViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEditorViewModel = getFragmentViewModel(EditorViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mState = getFragmentScopeViewModel(EditorViewModel.class);
+        mEvent = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Nullable
@@ -56,7 +56,7 @@ public class EditorFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_editor, container, false);
         FragmentEditorBinding binding = FragmentEditorBinding.bind(view);
         binding.setLifecycleOwner(this);
-        binding.setVm(mEditorViewModel);
+        binding.setVm(mState);
         binding.setClick(new ClickProxy());
         return view;
     }
@@ -85,9 +85,9 @@ public class EditorFragment extends BaseFragment {
                 Moment moment = new Moment();
                 moment.setUuid(UUID.randomUUID().toString());
                 moment.setUserName("KunMinX");
-                moment.setLocation(mEditorViewModel.location.get());
-                moment.setContent(mEditorViewModel.content.get());
-                mSharedViewModel.moment.postValue(moment);
+                moment.setLocation(mState.location.get());
+                moment.setContent(mState.content.get());
+                mEvent.moment.postValue(moment);
                 nav().navigateUp();
             }
             return true;

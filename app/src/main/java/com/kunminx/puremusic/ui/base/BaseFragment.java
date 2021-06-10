@@ -32,8 +32,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-
 import androidx.navigation.fragment.NavHostFragment;
+
 import com.kunminx.puremusic.App;
 
 
@@ -47,7 +47,7 @@ public abstract class BaseFragment extends Fragment {
     protected boolean mAnimationLoaded;
     private ViewModelProvider mFragmentProvider;
     private ViewModelProvider mActivityProvider;
-    private ViewModelProvider.Factory mFactory;
+    private ViewModelProvider mApplicationProvider;
 
 
     @Override
@@ -93,32 +93,32 @@ public abstract class BaseFragment extends Fragment {
         showShortToast(mActivity.getApplicationContext().getString(stringRes));
     }
 
-    protected <T extends ViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
+    protected <T extends ViewModel> T getFragmentScopeViewModel(@NonNull Class<T> modelClass) {
         if (mFragmentProvider == null) {
             mFragmentProvider = new ViewModelProvider(this);
         }
         return mFragmentProvider.get(modelClass);
     }
 
-    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+    protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
         if (mActivityProvider == null) {
             mActivityProvider = new ViewModelProvider(mActivity);
         }
         return mActivityProvider.get(modelClass);
     }
 
-    protected ViewModelProvider getAppViewModelProvider(Activity activity) {
-        return new ViewModelProvider((App) activity.getApplicationContext(),
-                getAppFactory(activity));
+    protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
+        if (mApplicationProvider == null) {
+            mApplicationProvider = new ViewModelProvider(
+                    (App) mActivity.getApplicationContext(), getApplicationFactory(mActivity));
+        }
+        return mApplicationProvider.get(modelClass);
     }
 
-    private ViewModelProvider.Factory getAppFactory(Activity activity) {
+    private ViewModelProvider.Factory getApplicationFactory(Activity activity) {
         checkActivity(this);
         Application application = checkApplication(activity);
-        if (mFactory == null) {
-            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-        }
-        return mFactory;
+        return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
     }
 
     private Application checkApplication(Activity activity) {

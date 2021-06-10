@@ -27,27 +27,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentDetailBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.callback.SharedViewModel;
+import com.kunminx.puremusic.ui.event.SharedViewModel;
 import com.kunminx.puremusic.ui.state.DetailViewModel;
-
-import java.util.UUID;
 
 /**
  * Create by KunMinX at 2020/5/30
  */
 public class DetailFragment extends BaseFragment {
 
-    private DetailViewModel mDetailViewModel;
-    private SharedViewModel mSharedViewModel;
+    private DetailViewModel mState;
+    private SharedViewModel mEvent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDetailViewModel = getFragmentViewModel(DetailViewModel.class);
-        mSharedViewModel = getActivityViewModel(SharedViewModel.class);
+        mState = getFragmentScopeViewModel(DetailViewModel.class);
+        mEvent = getActivityScopeViewModel(SharedViewModel.class);
     }
 
     @Nullable
@@ -56,7 +53,7 @@ public class DetailFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
         FragmentDetailBinding binding = FragmentDetailBinding.bind(view);
         binding.setLifecycleOwner(this);
-        binding.setVm(mDetailViewModel);
+        binding.setVm(mState);
         binding.setClick(new ClickProxy());
         return view;
     }
