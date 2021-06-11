@@ -1,3 +1,3 @@
 include ':smoothnavigation'
 include ':app'
-rootProject.name = 'PureMusic'
+rootProject.name = 'Smooth-Navigation'

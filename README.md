@@ -1,5 +1,5 @@
 
-![](https://i.loli.net/2021/06/10/kDI7YmV4w692rL5.png)
+![](https://tva1.sinaimg.cn/large/008i3skNly1gre5lgdze1j3136080wf9.jpg)
 
 # Smooth-Navigation
 
@@ -34,8 +34,8 @@ Provides safe and reliable Navigation operations, and solves the common problem 
 
 ## Maven dependency
 
-- The following implementation is renamed. We have changed from `archi` to `arch`. Please pay attention to the modification,
-- Due to the closure of JCenter, we have migrated the warehouse to Maven Central. Please add `mavenCentral()` in the root directory build.gradle.
+- The following implementation is renamed. We have changed from `archi` to `arch`, so you should pay attention to the modification,
+- Due to the closure of JCenter, we have migrated the warehouse to Maven Central, so you can add `mavenCentral()` in the root directory build.gradle.
 
 ```groovy
 implementation 'com.kunminx.arch:smooth-navigation:3.9.0-beta1'
