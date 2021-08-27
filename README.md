@@ -1,5 +1,5 @@
 
-![](https://tva1.sinaimg.cn/large/008i3skNly1gre5lgdze1j3136080wf9.jpg)
+![](https://images.xiaozhuanlan.com/photo/2021/327790ad1afdb6b91bebdd423bc188a6.png)
 
 # Smooth-Navigation
 
