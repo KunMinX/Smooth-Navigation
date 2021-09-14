@@ -75,6 +75,10 @@ public class DetailFragment extends BaseFragment {
             nav().navigateUp();
         }
 
+        public void singleTopJump(){
+            nav().navigate(R.id.action_detailFragment_to_detailFragment);
+        }
+
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             if (item.getItemId() == R.id.menu_edit) {

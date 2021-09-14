@@ -10,5 +10,6 @@
     <string name="edit">编辑</string>
     <string name="jump">跳转</string>
     <string name="tip_child">温馨提示：如想在 Parent Fragment 中控制 Child Fragment 之间的跳转，那么跳转代码请仍旧在 Child Fragment 内部写（使用 NavHostFragment.findNavController( thisFragment ).navigate），然后 Parent Fragment 通过 SharedViewModel + UnPeekLiveData 等方式从外部间接通知 Child Fragment 执行跳转代码。</string>
+    <string name="single_top_jump">single_Top 跳转</string>
 
 </resources>
