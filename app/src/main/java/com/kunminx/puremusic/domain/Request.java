@@ -27,10 +27,10 @@ import java.util.List;
  */
 public class Request {
 
-    public interface IMomentRequest {
+  public interface IMomentRequest {
 
-        LiveData<List<Moment>> getListMutableLiveData();
+    LiveData<List<Moment>> getListMutableLiveData();
 
-        void requestList();
-    }
+    void requestList();
+  }
 }

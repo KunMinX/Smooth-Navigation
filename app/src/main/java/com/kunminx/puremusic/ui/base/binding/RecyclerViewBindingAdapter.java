@@ -17,7 +17,6 @@
 package com.kunminx.puremusic.ui.base.binding;
 
 import androidx.databinding.BindingAdapter;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,27 +27,27 @@ import java.util.List;
  */
 public class RecyclerViewBindingAdapter {
 
-    @BindingAdapter(value = {"adapter", "refreshList", "autoScrollToTopWhenInsert", "autoScrollToBottomWhenInsert"}, requireAll = false)
-    public static void bindList(RecyclerView recyclerView, ListAdapter adapter, List list,
-                                boolean autoScrollToTopWhenInsert, boolean autoScrollToBottomWhenInsert) {
+  @BindingAdapter(value = {"adapter", "refreshList", "autoScrollToTopWhenInsert", "autoScrollToBottomWhenInsert"}, requireAll = false)
+  public static void bindList(RecyclerView recyclerView, ListAdapter adapter, List list,
+                              boolean autoScrollToTopWhenInsert, boolean autoScrollToBottomWhenInsert) {
 
-        if (recyclerView != null && list != null) {
-            if (recyclerView.getAdapter() == null) {
-                recyclerView.setAdapter(adapter);
+    if (recyclerView != null && list != null) {
+      if (recyclerView.getAdapter() == null) {
+        recyclerView.setAdapter(adapter);
 
-                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                    @Override
-                    public void onItemRangeInserted(int positionStart, int itemCount) {
-                        if (autoScrollToTopWhenInsert) {
-                            recyclerView.scrollToPosition(0);
-                        } else if (autoScrollToBottomWhenInsert) {
-                            recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount());
-                        }
-                    }
-                });
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+          @Override
+          public void onItemRangeInserted(int positionStart, int itemCount) {
+            if (autoScrollToTopWhenInsert) {
+              recyclerView.scrollToPosition(0);
+            } else if (autoScrollToBottomWhenInsert) {
+              recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount());
             }
+          }
+        });
+      }
 
-            adapter.submitList(list);
-        }
+      adapter.submitList(list);
     }
+  }
 }

@@ -29,18 +29,18 @@ import java.util.List;
  */
 public class MomentRequest implements Request.IMomentRequest {
 
-    private MutableLiveData<List<Moment>> mListMutableLiveData;
+  private MutableLiveData<List<Moment>> mListMutableLiveData;
 
-    @Override
-    public LiveData<List<Moment>> getListMutableLiveData() {
-        if (mListMutableLiveData == null) {
-            mListMutableLiveData = new MutableLiveData<>();
-        }
-        return mListMutableLiveData;
+  @Override
+  public LiveData<List<Moment>> getListMutableLiveData() {
+    if (mListMutableLiveData == null) {
+      mListMutableLiveData = new MutableLiveData<>();
     }
+    return mListMutableLiveData;
+  }
 
-    @Override
-    public void requestList() {
-        DataRepository.getInstance().requestList(mListMutableLiveData);
-    }
+  @Override
+  public void requestList() {
+    DataRepository.getInstance().requestList(mListMutableLiveData);
+  }
 }

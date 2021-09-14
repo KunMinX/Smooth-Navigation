@@ -31,23 +31,23 @@ import java.util.List;
  */
 public class ListViewModel extends ViewModel implements Request.IMomentRequest {
 
-    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
+  public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
 
-    public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
+  public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
 
-    private MomentRequest mMomentRequest = new MomentRequest();
+  private MomentRequest mMomentRequest = new MomentRequest();
 
-    {
-        autoScrollToTopWhenInsert.setValue(true);
-    }
+  {
+    autoScrollToTopWhenInsert.setValue(true);
+  }
 
-    @Override
-    public LiveData<List<Moment>> getListMutableLiveData() {
-        return mMomentRequest.getListMutableLiveData();
-    }
+  @Override
+  public LiveData<List<Moment>> getListMutableLiveData() {
+    return mMomentRequest.getListMutableLiveData();
+  }
 
-    @Override
-    public void requestList() {
-        mMomentRequest.requestList();
-    }
+  @Override
+  public void requestList() {
+    mMomentRequest.requestList();
+  }
 }

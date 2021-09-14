@@ -35,42 +35,42 @@ import com.kunminx.puremusic.ui.state.DetailViewModel;
  */
 public class ChildBFragment extends BaseFragment {
 
-    private DetailViewModel mState;
-    private SharedViewModel mEvent;
+  private DetailViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mState = getFragmentScopeViewModel(DetailViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mState = getFragmentScopeViewModel(DetailViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
+
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_child_b, container, false);
+    FragmentChildBBinding binding = FragmentChildBBinding.bind(view);
+    binding.setLifecycleOwner(this);
+    binding.setClick(new ClickProxy());
+    return view;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+
+  }
+
+  public class ClickProxy {
+
+    public void jump() {
+      nav().navigate(R.id.action_childB_to_childC);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_child_b, container, false);
-        FragmentChildBBinding binding = FragmentChildBBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setClick(new ClickProxy());
-        return view;
+    public void back() {
+      nav().navigateUp();
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-    public class ClickProxy {
-
-        public void jump() {
-            nav().navigate(R.id.action_childB_to_childC);
-        }
-
-        public void back() {
-            nav().navigateUp();
-        }
-
-    }
+  }
 }

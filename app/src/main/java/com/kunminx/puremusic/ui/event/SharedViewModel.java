@@ -26,5 +26,5 @@ import com.kunminx.puremusic.data.bean.Moment;
  */
 public class SharedViewModel extends ViewModel {
 
-    public final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
+  public final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
 }

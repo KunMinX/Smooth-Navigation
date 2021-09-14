@@ -36,53 +36,53 @@ import com.kunminx.puremusic.ui.state.ListViewModel;
  */
 public class ListFragment extends BaseFragment {
 
-    private ListViewModel mState;
-    private SharedViewModel mEvent;
+  private ListViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mState = getFragmentScopeViewModel(ListViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mState = getFragmentScopeViewModel(ListViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
+
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_list, container, false);
+    FragmentListBinding binding = FragmentListBinding.bind(view);
+    binding.setLifecycleOwner(this);
+    binding.setVm(mState);
+    binding.setClick(new ClickProxy());
+
+    MomentAdapter adapter = new MomentAdapter(mActivity.getApplicationContext());
+    adapter.setOnItemClickListener((item, position) -> {
+      nav().navigate(R.id.action_listFragment_to_detailFragment);
+    });
+    binding.setAdapter(adapter);
+
+    return view;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
+      mState.list.setValue(moments);
+    });
+
+    mEvent.moment.observe(this, moment -> {
+      mState.list.getValue().add(0, moment);
+      mState.list.setValue(mState.list.getValue());
+    });
+
+    mState.requestList();
+  }
+
+  public class ClickProxy {
+    public void fabClick() {
+      nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        FragmentListBinding binding = FragmentListBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setVm(mState);
-        binding.setClick(new ClickProxy());
-
-        MomentAdapter adapter = new MomentAdapter(mActivity.getApplicationContext());
-        adapter.setOnItemClickListener((item, position) -> {
-            nav().navigate(R.id.action_listFragment_to_detailFragment);
-        });
-        binding.setAdapter(adapter);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
-            mState.list.setValue(moments);
-        });
-
-        mEvent.moment.observe(this, moment -> {
-            mState.list.getValue().add(0, moment);
-            mState.list.setValue(mState.list.getValue());
-        });
-
-        mState.requestList();
-    }
-
-    public class ClickProxy {
-        public void fabClick() {
-            nav().navigate(R.id.action_listFragment_to_editorFragment);
-        }
-    }
+  }
 }

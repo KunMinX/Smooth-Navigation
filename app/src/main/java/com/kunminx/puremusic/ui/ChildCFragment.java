@@ -35,42 +35,42 @@ import com.kunminx.puremusic.ui.state.DetailViewModel;
  */
 public class ChildCFragment extends BaseFragment {
 
-    private DetailViewModel mState;
-    private SharedViewModel mEvent;
+  private DetailViewModel mState;
+  private SharedViewModel mEvent;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mState = getFragmentScopeViewModel(DetailViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
-    }
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mState = getFragmentScopeViewModel(DetailViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_child_c, container, false);
-        FragmentChildCBinding binding = FragmentChildCBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setClick(new ClickProxy());
-        return view;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_child_c, container, false);
+    FragmentChildCBinding binding = FragmentChildCBinding.bind(view);
+    binding.setLifecycleOwner(this);
+    binding.setClick(new ClickProxy());
+    return view;
+  }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
 
-    }
+  }
 
-    public class ClickProxy {
+  public class ClickProxy {
 
-        public void jump() {
-
-        }
-
-        public void back() {
-            nav().navigateUp();
-        }
+    public void jump() {
 
     }
+
+    public void back() {
+      nav().navigateUp();
+    }
+
+  }
 }

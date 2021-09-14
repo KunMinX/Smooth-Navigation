@@ -37,54 +37,54 @@ import com.kunminx.puremusic.ui.state.DetailViewModel;
  */
 public class DetailFragment extends BaseFragment {
 
-    private DetailViewModel mState;
-    private SharedViewModel mEvent;
+  private DetailViewModel mState;
+  private SharedViewModel mEvent;
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mState = getFragmentScopeViewModel(DetailViewModel.class);
+    mEvent = getActivityScopeViewModel(SharedViewModel.class);
+  }
+
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_detail, container, false);
+    FragmentDetailBinding binding = FragmentDetailBinding.bind(view);
+    binding.setLifecycleOwner(this);
+    binding.setVm(mState);
+    binding.setClick(new ClickProxy());
+    return view;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+
+  }
+
+  public class ClickProxy implements Toolbar.OnMenuItemClickListener {
+
+    public void locate() {
+
+    }
+
+    public void back() {
+      nav().navigateUp();
+    }
+
+    public void singleTopJump() {
+      nav().navigate(R.id.action_detailFragment_to_detailFragment);
+    }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mState = getFragmentScopeViewModel(DetailViewModel.class);
-        mEvent = getActivityScopeViewModel(SharedViewModel.class);
+    public boolean onMenuItemClick(MenuItem item) {
+      if (item.getItemId() == R.id.menu_edit) {
+        nav().navigate(R.id.action_detailFragment_to_editorFragment);
+      }
+      return true;
     }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        FragmentDetailBinding binding = FragmentDetailBinding.bind(view);
-        binding.setLifecycleOwner(this);
-        binding.setVm(mState);
-        binding.setClick(new ClickProxy());
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-    public class ClickProxy implements Toolbar.OnMenuItemClickListener {
-
-        public void locate() {
-
-        }
-
-        public void back() {
-            nav().navigateUp();
-        }
-
-        public void singleTopJump(){
-            nav().navigate(R.id.action_detailFragment_to_detailFragment);
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            if (item.getItemId() == R.id.menu_edit) {
-                nav().navigate(R.id.action_detailFragment_to_editorFragment);
-            }
-            return true;
-        }
-    }
+  }
 }
