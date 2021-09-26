@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 
 ext {
     PUBLISH_GROUP_ID = 'com.kunminx.arch'
-    PUBLISH_VERSION = '3.9.0-beta1'
-    VERSION_CODE = 3090001
+    PUBLISH_VERSION = '4.0.0-beta1'
+    VERSION_CODE = 4000001
 
     PUBLISH_ARTIFACT_ID = 'smooth-navigation'
     ARTIFACT_DESCRIPTION = 'Provide a smooth Android Jetpack Navigation transition experience. And solve the fatal flaws that are common in the modified version of Navigation on GitHub.'

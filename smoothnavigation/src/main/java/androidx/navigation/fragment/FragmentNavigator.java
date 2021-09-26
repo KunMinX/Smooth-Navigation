@@ -200,6 +200,7 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         //TODO Tip 2: Increase fault tolerance to deal with incorrectly-timed jumps in the case of nested sub-fragments
         Log.d("Nav", " --mBackStack.size:" + mBackStack.size()
                 + " getFragments().size():" + mFragmentManager.getFragments().size());
+
         if (mBackStack.size() > 0 && mFragmentManager.getFragments().size() > 0) {
             Log.d("Nav", " --Add --- " + frag);
             Fragment hideFrag = mFragmentManager.getFragments().get(mBackStack.size() - 1);
@@ -213,7 +214,6 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
                 ft.add(mContainerId, frag);
                 ft.setPrimaryNavigationFragment(frag);
             }
-
         } else {
             Log.d("Nav", " --Replace --- " + frag);
             ft.replace(mContainerId, frag);
@@ -224,17 +224,6 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         if (initialNavigation) {
             isAdded = true;
         } else if (isSingleTopReplacement) {
-            // Single Top means we only want one instance on the back stack
-//            if (mBackStack.size() > 1) {
-//                // If the Fragment to be replaced is on the FragmentManager's
-//                // back stack, a simple replace() isn't enough so we
-//                // remove it from the back stack and put our replacement
-//                // on the back stack in its place
-//                mFragmentManager.popBackStack(
-//                        generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
-//                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                ft.addToBackStack(generateBackStackName(mBackStack.size(), destId));
-//            }
             isAdded = false;
         } else {
             ft.addToBackStack(generateBackStackName(mBackStack.size() + 1, destId));
@@ -248,7 +237,6 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         }
         ft.setReorderingAllowed(true);
         ft.commit();
-        // The commit succeeded, update our view of the world
         if (isAdded) {
             mBackStack.add(destId);
             return destination;

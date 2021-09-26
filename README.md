@@ -15,7 +15,7 @@
 - 鉴于 Jcenter 的关闭，我们已将仓库迁移至 Maven Central，请自行在根目录 build.gradle 添加 `mavenCentral()`。
 
 ```groovy
-implementation 'com.kunminx.arch:smooth-navigation:3.9.0-beta1'
+implementation 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
 ```
 
 如果使用 kotlin 拓展，那么在上述的基础上，添加如下依赖即可：
@@ -38,7 +38,7 @@ Provides safe and reliable Navigation operations, and solves the common problem 
 - Due to the closure of JCenter, we have migrated the warehouse to Maven Central, so you can add `mavenCentral()` in the root directory build.gradle.
 
 ```groovy
-implementation 'com.kunminx.arch:smooth-navigation:3.9.0-beta1'
+implementation 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
 ```
 
 If you use kotlin extension, then on the basis of the above, add the following dependencies:
@@ -52,6 +52,8 @@ implementation('androidx.navigation:navigation-fragment-ktx:2.3.2') {
 ## Thanks
 
 感谢 @孙致远、@别睡太晚、@雅俗共赏 等小伙伴对 popUpToInclusive 以及嵌套 child 等场景下容错问题的反馈和测试 Demo 的提供。
+
+感谢小伙伴 @ hele-jeremy 对 launchSingleTop 场景下容错问题的反馈和优化代码的提供。
 
 ## License
 
