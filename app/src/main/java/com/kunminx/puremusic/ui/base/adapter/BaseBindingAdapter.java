@@ -30,6 +30,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kunminx.puremusic.utils.ClickUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +71,7 @@ public abstract class BaseBindingAdapter<M, B extends ViewDataBinding> extends L
   public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     B binding = DataBindingUtil.inflate(LayoutInflater.from(this.mContext), this.getLayoutResId(viewType), parent, false);
     BaseBindingViewHolder holder = new BaseBindingViewHolder(binding.getRoot());
-    holder.itemView.setOnClickListener(v -> {
+    ClickUtils.applySingleDebouncing(holder.itemView, v -> {
       if (mOnItemClickListener != null) {
         int position = holder.getBindingAdapterPosition();
         mOnItemClickListener.onItemClick(getItem(position), position);
