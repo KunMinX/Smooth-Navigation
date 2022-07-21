@@ -17,10 +17,6 @@
 
     <data>
 
-        <variable
-            name="click"
-            type="com.kunminx.puremusic.ui.ChildCFragment.ClickProxy" />
-
     </data>
 
     <LinearLayout
@@ -36,15 +32,6 @@
             android:layout_margin="12dp"
             android:text="Child Fragment C"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:onClick="@{()->click.jump()}"
-            android:text="@string/jump"
-            android:visibility="gone" />
 
     </LinearLayout>
 </layout>

@@ -50,26 +50,6 @@ public class ChildCFragment extends BaseFragment {
     View view = inflater.inflate(R.layout.fragment_child_c, container, false);
     FragmentChildCBinding binding = FragmentChildCBinding.bind(view);
     binding.setLifecycleOwner(this);
-    binding.setClick(new ClickProxy());
     return view;
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-
-  }
-
-  public class ClickProxy {
-
-    public void jump() {
-
-    }
-
-    public void back() {
-      nav().navigateUp();
-    }
-
   }
 }

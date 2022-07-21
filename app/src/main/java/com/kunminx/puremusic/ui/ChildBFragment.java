@@ -62,14 +62,8 @@ public class ChildBFragment extends BaseFragment {
   }
 
   public class ClickProxy {
-
     public void jump() {
       nav().navigate(R.id.action_childB_to_childC);
     }
-
-    public void back() {
-      nav().navigateUp();
-    }
-
   }
 }
