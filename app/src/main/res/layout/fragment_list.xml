@@ -45,7 +45,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
             app:title="@string/moment_list" />
 
         <androidx.recyclerview.widget.RecyclerView

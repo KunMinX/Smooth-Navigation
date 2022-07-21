@@ -90,13 +90,7 @@ public class DetailFragment extends BaseFragment {
   }
 
   public static class DetailViewModel extends ViewModel {
-
-    public final ObservableField<String> content = new ObservableField<>();
-    public final ObservableField<String> location = new ObservableField<>();
-
-    {
-      location.set("添加定位");
-      content.set("");
-    }
+    public final ObservableField<String> content = new ObservableField<>("");
+    public final ObservableField<String> location = new ObservableField<>("添加定位");
   }
 }

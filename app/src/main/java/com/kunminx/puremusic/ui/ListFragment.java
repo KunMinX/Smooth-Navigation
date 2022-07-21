@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -31,7 +30,6 @@ import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentListBinding;
 import com.kunminx.puremusic.domain.MomentRequest;
-import com.kunminx.puremusic.domain.Request;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.event.SharedViewModel;
@@ -45,12 +43,14 @@ public class ListFragment extends BaseFragment {
 
   private ListViewModel mState;
   private SharedViewModel mEvent;
+  private MomentRequest mMomentRequest;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mState = getFragmentScopeViewModel(ListViewModel.class);
     mEvent = getActivityScopeViewModel(SharedViewModel.class);
+    mMomentRequest = getFragmentScopeViewModel(MomentRequest.class);
   }
 
   @Nullable
@@ -75,7 +75,7 @@ public class ListFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    mState.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
+    mMomentRequest.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
       mState.list.setValue(moments);
     });
 
@@ -84,7 +84,7 @@ public class ListFragment extends BaseFragment {
       mState.list.setValue(mState.list.getValue());
     });
 
-    mState.requestList();
+    mMomentRequest.requestList();
   }
 
   public class ClickProxy {
@@ -93,26 +93,8 @@ public class ListFragment extends BaseFragment {
     }
   }
 
-  public static class ListViewModel extends ViewModel implements Request.IMomentRequest {
-
+  public static class ListViewModel extends ViewModel {
     public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
-
-    public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
-
-    private MomentRequest mMomentRequest = new MomentRequest();
-
-    {
-      autoScrollToTopWhenInsert.setValue(true);
-    }
-
-    @Override
-    public LiveData<List<Moment>> getListMutableLiveData() {
-      return mMomentRequest.getListMutableLiveData();
-    }
-
-    @Override
-    public void requestList() {
-      mMomentRequest.requestList();
-    }
+    public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>(true);
   }
 }
