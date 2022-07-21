@@ -91,6 +91,9 @@ public class ListFragment extends BaseFragment {
     public void fabClick() {
       nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
+    public void fab2Click() {
+      nav().navigate(R.id.action_listFragment_to_indexFragment);
+    }
   }
 
   public static class ListViewModel extends ViewModel {
