@@ -40,9 +40,9 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
-            initTabAndPage="@{true}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab1"
@@ -64,7 +64,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="0dp"

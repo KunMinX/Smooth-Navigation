@@ -23,11 +23,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentIndexBinding;
-import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.ui.base.BaseFragment;
 
 /**
  * Create by KunMinX at 2020/5/30
@@ -35,6 +39,7 @@ import com.kunminx.puremusic.domain.event.SharedViewModel;
 public class IndexFragment extends BaseFragment {
 
   private SharedViewModel mEvent;
+  private FragmentIndexBinding mBinding;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +51,8 @@ public class IndexFragment extends BaseFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_index, container, false);
-    FragmentIndexBinding binding = FragmentIndexBinding.bind(view);
-    binding.setLifecycleOwner(this);
+    mBinding = FragmentIndexBinding.bind(view);
+    mBinding.setLifecycleOwner(this);
     return view;
   }
 
@@ -55,6 +60,28 @@ public class IndexFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-
+    mBinding.vp.setAdapter(new FragmentPagerAdapter(mActivity));
+    new TabLayoutMediator(mBinding.tab, mBinding.vp, (tab, position) -> {
+      tab.setText(String.valueOf(position));
+    }).attach();
   }
+
+  public static class FragmentPagerAdapter extends FragmentStateAdapter {
+
+    public FragmentPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+      super(fragmentActivity);
+    }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+      return new ChildDFragment();
+    }
+
+    @Override
+    public int getItemCount() {
+      return 3;
+    }
+  }
+
 }
