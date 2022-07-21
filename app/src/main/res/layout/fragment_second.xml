@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
+            android:fitsSystemWindows="true"
             android:text="二级页面"
             android:textSize="20sp" />
 

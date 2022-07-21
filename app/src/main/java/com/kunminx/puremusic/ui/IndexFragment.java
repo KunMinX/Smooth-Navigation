@@ -18,6 +18,7 @@ package com.kunminx.puremusic.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,6 +28,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentIndexBinding;
@@ -61,9 +64,40 @@ public class IndexFragment extends BaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     mBinding.vp.setAdapter(new FragmentPagerAdapter(mActivity));
+    mBinding.vp.setUserInputEnabled(false);
     new TabLayoutMediator(mBinding.tab, mBinding.vp, (tab, position) -> {
       tab.setText(String.valueOf(position));
     }).attach();
+    mBinding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        mBinding.vp.setCurrentItem(tab.getPosition(), false);
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+
+      }
+    });
+    mBinding.bottomView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+      @Override
+      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.navigation_item1) {
+          mBinding.vp.setCurrentItem(0, false);
+        } else if (itemId == R.id.navigation_item2) {
+          mBinding.vp.setCurrentItem(1, false);
+        } else if (itemId == R.id.navigation_item3) {
+          mBinding.vp.setCurrentItem(2, false);
+        }
+        return false;
+      }
+    });
   }
 
   public static class FragmentPagerAdapter extends FragmentStateAdapter {
