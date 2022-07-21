@@ -38,6 +38,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            initTabAndPage="@{true}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dash" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting" />
+
+        </com.google.android.material.tabs.TabLayout>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"

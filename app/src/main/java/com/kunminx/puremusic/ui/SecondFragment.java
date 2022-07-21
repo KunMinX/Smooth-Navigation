@@ -25,36 +25,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.databinding.FragmentIndexBinding;
-import com.kunminx.puremusic.ui.base.BaseFragment;
+import com.kunminx.puremusic.databinding.FragmentChildDBinding;
+import com.kunminx.puremusic.databinding.FragmentSecondBinding;
 import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.ui.base.BaseFragment;
 
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class IndexFragment extends BaseFragment {
+public class SecondFragment extends BaseFragment {
 
+  private DetailFragment.DetailViewModel mState;
   private SharedViewModel mEvent;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    mState = getFragmentScopeViewModel(DetailFragment.DetailViewModel.class);
     mEvent = getActivityScopeViewModel(SharedViewModel.class);
   }
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_index, container, false);
-    FragmentIndexBinding binding = FragmentIndexBinding.bind(view);
+    View view = inflater.inflate(R.layout.fragment_second, container, false);
+    FragmentSecondBinding binding = FragmentSecondBinding.bind(view);
     binding.setLifecycleOwner(this);
     return view;
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-
   }
 }
