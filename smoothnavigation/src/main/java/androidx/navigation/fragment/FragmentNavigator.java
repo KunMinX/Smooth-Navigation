@@ -31,6 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
@@ -186,21 +187,6 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim);
         }
 
-        //TODO Tip 1: Solve the unexpected display of popUpToInclusive under the add hide solution
-        //TODO Tip 2: Increase fault tolerance to deal with incorrectly-timed jumps in the case of nested sub-fragments
-        Log.d("Nav", " --mBackStack.size:" + mBackStack.size()
-                + " getFragments().size():" + mFragmentManager.getFragments().size());
-        if (mBackStack.size() > 0 && mFragmentManager.getFragments().size() > 0) {
-            Log.d("Nav"," --Hide --Add");
-            ft.hide(mFragmentManager.getFragments().get(mBackStack.size() - 1));
-            ft.add(mContainerId, frag);
-        } else {
-            Log.d("Nav"," --Replace");
-            ft.replace(mContainerId, frag);
-        }
-
-        ft.setPrimaryNavigationFragment(frag);
-
         final @IdRes int destId = destination.getId();
         final boolean initialNavigation = mBackStack.isEmpty();
         // TODO Build first class singleTop behavior for fragments
@@ -208,27 +194,42 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
                 && navOptions.shouldLaunchSingleTop()
                 && mBackStack.peekLast() == destId;
 
+        Log.d("Nav", " --isSingleTopReplacement --- " + isSingleTopReplacement);
+
+        //TODO Tip 1: Solve the unexpected display of popUpToInclusive under the add hide solution
+        //TODO Tip 2: Increase fault tolerance to deal with incorrectly-timed jumps in the case of nested sub-fragments
+        Log.d("Nav", " --mBackStack.size:" + mBackStack.size()
+                + " getFragments().size():" + mFragmentManager.getFragments().size());
+
+        if (mBackStack.size() > 0 && mFragmentManager.getFragments().size() > 0) {
+            Log.d("Nav", " --Add --- " + frag);
+            Fragment hideFrag = mFragmentManager.getFragments().get(mBackStack.size() - 1);
+            Log.d("Nav", " --Hide --- " + hideFrag);
+
+            if (isSingleTopReplacement) {
+                hideFrag.setArguments(args);
+                ft.setMaxLifecycle(hideFrag, Lifecycle.State.RESUMED);
+            } else {
+                ft.hide(hideFrag);
+                ft.add(mContainerId, frag);
+                ft.setPrimaryNavigationFragment(frag);
+            }
+        } else {
+            Log.d("Nav", " --Replace --- " + frag);
+            ft.replace(mContainerId, frag);
+            ft.setPrimaryNavigationFragment(frag);
+        }
+
         boolean isAdded;
         if (initialNavigation) {
             isAdded = true;
         } else if (isSingleTopReplacement) {
-            // Single Top means we only want one instance on the back stack
-            if (mBackStack.size() > 1) {
-                // If the Fragment to be replaced is on the FragmentManager's
-                // back stack, a simple replace() isn't enough so we
-                // remove it from the back stack and put our replacement
-                // on the back stack in its place
-                mFragmentManager.popBackStack(
-                        generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                ft.addToBackStack(generateBackStackName(mBackStack.size(), destId));
-            }
             isAdded = false;
         } else {
             ft.addToBackStack(generateBackStackName(mBackStack.size() + 1, destId));
             isAdded = true;
         }
-        if (navigatorExtras instanceof Extras) {
+        if (navigatorExtras instanceof Extras && !isSingleTopReplacement) {
             Extras extras = (Extras) navigatorExtras;
             for (Map.Entry<View, String> sharedElement : extras.getSharedElements().entrySet()) {
                 ft.addSharedElement(sharedElement.getKey(), sharedElement.getValue());
@@ -236,7 +237,6 @@ public class FragmentNavigator extends Navigator<FragmentNavigator.Destination> 
         }
         ft.setReorderingAllowed(true);
         ft.commit();
-        // The commit succeeded, update our view of the world
         if (isAdded) {
             mBackStack.add(destId);
             return destination;
