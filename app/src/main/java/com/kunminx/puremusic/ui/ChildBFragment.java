@@ -54,13 +54,6 @@ public class ChildBFragment extends BaseFragment {
     return view;
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-
-  }
-
   public class ClickProxy {
     public void jump() {
       nav().navigate(R.id.action_childB_to_childC);

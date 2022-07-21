@@ -62,13 +62,6 @@ public class EditorFragment extends BaseFragment {
     return view;
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-
-  }
-
   public class ClickProxy implements Toolbar.OnMenuItemClickListener {
 
     public void locate() {

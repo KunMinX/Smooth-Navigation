@@ -38,7 +38,6 @@ public class ChildDFragment extends BaseFragment {
 
   private DetailFragment.DetailViewModel mState;
   private SharedViewModel mEvent;
-  private FragmentChildDBinding mBinding;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,16 +50,11 @@ public class ChildDFragment extends BaseFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_child_d, container, false);
-    mBinding = FragmentChildDBinding.bind(view);
-    mBinding.setLifecycleOwner(this);
-    mBinding.setClick(new ClickProxy());
+    FragmentChildDBinding binding = FragmentChildDBinding.bind(view);
+    binding.setLifecycleOwner(this);
+    binding.setClick(new ClickProxy());
+    binding.tv.setText(UUID.randomUUID().toString());
     return view;
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    mBinding.tv.setText(UUID.randomUUID().toString());
   }
 
   public class ClickProxy {

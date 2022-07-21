@@ -40,7 +40,6 @@ import com.kunminx.puremusic.ui.base.BaseFragment;
 public class IndexFragment extends BaseFragment {
 
   private SharedViewModel mEvent;
-  private FragmentIndexBinding mBinding;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,23 +51,17 @@ public class IndexFragment extends BaseFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_index, container, false);
-    mBinding = FragmentIndexBinding.bind(view);
-    mBinding.setLifecycleOwner(this);
-    return view;
-  }
+    FragmentIndexBinding binding = FragmentIndexBinding.bind(view);
+    binding.setLifecycleOwner(this);
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-    mBinding.vp.setAdapter(new FragmentPagerAdapter(mActivity));
-    new TabLayoutMediator(mBinding.tab, mBinding.vp, (tab, position) -> {
+    binding.vp.setAdapter(new FragmentPagerAdapter(mActivity));
+    new TabLayoutMediator(binding.tab, binding.vp, (tab, position) -> {
       tab.setText(String.valueOf(position));
     }).attach();
-    mBinding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+    binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
       @Override
       public void onTabSelected(TabLayout.Tab tab) {
-        mBinding.vp.setCurrentItem(tab.getPosition(), mBinding.sw.isChecked());
+        binding.vp.setCurrentItem(tab.getPosition(), binding.sw.isChecked());
       }
 
       @Override
@@ -81,20 +74,21 @@ public class IndexFragment extends BaseFragment {
 
       }
     });
-    mBinding.bottomView.setOnItemSelectedListener(item -> {
+    binding.bottomView.setOnItemSelectedListener(item -> {
       int itemId = item.getItemId();
       if (itemId == R.id.navigation_item1) {
-        mBinding.vp.setCurrentItem(0, false);
+        binding.vp.setCurrentItem(0, false);
       } else if (itemId == R.id.navigation_item2) {
-        mBinding.vp.setCurrentItem(1, false);
+        binding.vp.setCurrentItem(1, false);
       } else if (itemId == R.id.navigation_item3) {
-        mBinding.vp.setCurrentItem(2, false);
+        binding.vp.setCurrentItem(2, false);
       }
       return true;
     });
-    mBinding.sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
-      mBinding.vp.setUserInputEnabled(isChecked);
+    binding.sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
+      binding.vp.setUserInputEnabled(isChecked);
     });
+    return view;
   }
 
   public static class FragmentPagerAdapter extends FragmentStateAdapter {
