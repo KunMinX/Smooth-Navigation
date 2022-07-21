@@ -25,13 +25,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.ObservableField;
+import androidx.lifecycle.ViewModel;
 
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentEditorBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.EditorViewModel;
 
 import java.util.UUID;
 
@@ -91,6 +92,17 @@ public class EditorFragment extends BaseFragment {
         nav().navigateUp();
       }
       return true;
+    }
+  }
+
+  public static class EditorViewModel extends ViewModel {
+
+    public final ObservableField<String> content = new ObservableField<>();
+    public final ObservableField<String> location = new ObservableField<>();
+
+    {
+      location.set("添加定位");
+      content.set("");
     }
   }
 }

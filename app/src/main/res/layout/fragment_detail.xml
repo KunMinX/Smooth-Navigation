@@ -20,7 +20,7 @@
 
         <variable
             name="vm"
-            type="com.kunminx.puremusic.ui.state.DetailViewModel" />
+            type="com.kunminx.puremusic.ui.DetailFragment.DetailViewModel" />
 
         <variable
             name="click"
@@ -82,7 +82,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et" />
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"

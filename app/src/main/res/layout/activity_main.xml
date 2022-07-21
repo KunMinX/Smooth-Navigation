@@ -19,9 +19,6 @@
 
     <data>
 
-        <variable
-            name="click"
-            type="com.kunminx.puremusic.ui.MainActivity.ClickProxy" />
 
     </data>
 
@@ -29,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_fragment_host"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
@@ -37,17 +34,6 @@
             android:fitsSystemWindows="true"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
-
-        <ImageButton
-            android:id="@+id/btn_to_second_activity"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="top|center_horizontal"
-            android:layout_marginTop="28dp"
-            android:background="@color/transparent"
-            android:onClick="@{()->click.toSecondActivity()}"
-            android:src="@drawable/ic_add"
-            android:tint="@color/gray" />
 
     </FrameLayout>
 </layout>

@@ -56,15 +56,11 @@ public final class DialogFragmentNavigator extends Navigator<DialogFragmentNavig
     private final FragmentManager mFragmentManager;
     private int mDialogCount = 0;
 
-    private LifecycleEventObserver mObserver = new LifecycleEventObserver() {
-        @Override
-        public void onStateChanged(@NonNull LifecycleOwner source,
-                                   @NonNull Lifecycle.Event event) {
-            if (event == Lifecycle.Event.ON_STOP) {
-                DialogFragment dialogFragment = (DialogFragment) source;
-                if (!dialogFragment.requireDialog().isShowing()) {
-                    NavHostFragment.findNavController(dialogFragment).popBackStack();
-                }
+    private LifecycleEventObserver mObserver = (source, event) -> {
+        if (event == Lifecycle.Event.ON_STOP) {
+            DialogFragment dialogFragment = (DialogFragment) source;
+            if (!dialogFragment.requireDialog().isShowing()) {
+                NavHostFragment.findNavController(dialogFragment).popBackStack();
             }
         }
     };

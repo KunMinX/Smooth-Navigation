@@ -28,7 +28,6 @@ import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentChildBBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.DetailViewModel;
 
 /**
  * Create by KunMinX at 2020/5/30

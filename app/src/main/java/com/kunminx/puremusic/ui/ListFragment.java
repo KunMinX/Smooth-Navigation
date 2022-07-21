@@ -23,13 +23,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.kunminx.puremusic.R;
+import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentListBinding;
+import com.kunminx.puremusic.domain.MomentRequest;
+import com.kunminx.puremusic.domain.Request;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.ui.event.SharedViewModel;
-import com.kunminx.puremusic.ui.state.ListViewModel;
+
+import java.util.List;
 
 /**
  * Create by KunMinX at 2020/5/30
@@ -83,6 +90,29 @@ public class ListFragment extends BaseFragment {
   public class ClickProxy {
     public void fabClick() {
       nav().navigate(R.id.action_listFragment_to_editorFragment);
+    }
+  }
+
+  public static class ListViewModel extends ViewModel implements Request.IMomentRequest {
+
+    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
+
+    public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>();
+
+    private MomentRequest mMomentRequest = new MomentRequest();
+
+    {
+      autoScrollToTopWhenInsert.setValue(true);
+    }
+
+    @Override
+    public LiveData<List<Moment>> getListMutableLiveData() {
+      return mMomentRequest.getListMutableLiveData();
+    }
+
+    @Override
+    public void requestList() {
+      mMomentRequest.requestList();
     }
   }
 }
