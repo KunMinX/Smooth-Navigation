@@ -14,5 +14,6 @@
     <string name="home">home</string>
     <string name="dash">dash</string>
     <string name="setting">setting</string>
+    <string name="allow_vp_scroll">允许子页面左右滚动</string>
 
 </resources>
