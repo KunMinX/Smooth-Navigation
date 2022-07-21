@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.kunminx.puremusic.ui.event;
+package com.kunminx.puremusic.domain.event;
 
 import androidx.lifecycle.ViewModel;
 

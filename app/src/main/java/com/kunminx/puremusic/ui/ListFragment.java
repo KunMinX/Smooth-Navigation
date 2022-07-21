@@ -32,7 +32,7 @@ import com.kunminx.puremusic.databinding.FragmentListBinding;
 import com.kunminx.puremusic.domain.MomentRequest;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.ui.event.SharedViewModel;
+import com.kunminx.puremusic.domain.event.SharedViewModel;
 
 import java.util.List;
 

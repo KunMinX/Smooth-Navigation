@@ -25,45 +25,29 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kunminx.puremusic.R;
-import com.kunminx.puremusic.databinding.FragmentChildBBinding;
+import com.kunminx.puremusic.databinding.FragmentIndexBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.domain.event.SharedViewModel;
 
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class ChildBFragment extends BaseFragment {
+public class IndexFragment extends BaseFragment {
 
-  private DetailFragment.DetailViewModel mState;
   private SharedViewModel mEvent;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mState = getFragmentScopeViewModel(DetailFragment.DetailViewModel.class);
     mEvent = getActivityScopeViewModel(SharedViewModel.class);
   }
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_child_b, container, false);
-    FragmentChildBBinding binding = FragmentChildBBinding.bind(view);
+    View view = inflater.inflate(R.layout.fragment_index, container, false);
+    FragmentIndexBinding binding = FragmentIndexBinding.bind(view);
     binding.setLifecycleOwner(this);
-    binding.setClick(new ClickProxy());
     return view;
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-
-  }
-
-  public class ClickProxy {
-    public void jump() {
-      nav().navigate(R.id.action_childB_to_childC);
-    }
   }
 }
