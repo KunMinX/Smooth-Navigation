@@ -34,13 +34,13 @@ import com.kunminx.puremusic.ui.event.SharedViewModel;
  */
 public class ChildCFragment extends BaseFragment {
 
-  private DetailViewModel mState;
+  private DetailFragment.DetailViewModel mState;
   private SharedViewModel mEvent;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mState = getFragmentScopeViewModel(DetailViewModel.class);
+    mState = getFragmentScopeViewModel(DetailFragment.DetailViewModel.class);
     mEvent = getActivityScopeViewModel(SharedViewModel.class);
   }
 
