@@ -45,5 +45,13 @@
             android:onClick="@{()->click.jumpToSecond()}"
             android:text="跳转到二级页面" />
 
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="ViewPager Child Fragment 可直接访问容器 Fragment -> 二级 Fragment。如是 DetailFragment 和 ChildA、B、C 案例，则不可。后者 child 处于独立返回栈。"
+            android:textSize="20sp" />
+
     </LinearLayout>
 </layout>
