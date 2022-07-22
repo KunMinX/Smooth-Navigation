@@ -4,8 +4,8 @@ group='com.github.KunMinX'
 
 ext {
     PUBLISH_GROUP_ID = 'com.kunminx.arch'
-    PUBLISH_VERSION = '4.0.0-beta1'
-    VERSION_CODE = 4000001
+    PUBLISH_VERSION = '4.0.0'
+    VERSION_CODE = 4000002
 
     PUBLISH_ARTIFACT_ID = 'smooth-navigation'
     ARTIFACT_DESCRIPTION = 'Provide a smooth Android Jetpack Navigation transition experience. And solve the fatal flaws that are common in the modified version of Navigation on GitHub.'

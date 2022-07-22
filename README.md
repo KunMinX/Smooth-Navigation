@@ -11,17 +11,16 @@
 
 ## Maven 依赖
 
-- 以下 implementation 命名，我们已从 `archi` 改为 `arch`，请注意修改，
 - 鉴于 Jcenter 关闭，我们已将仓库迁移至 Maven Central，请自行在根目录 build.gradle 添加 `mavenCentral()`。
 
 ```groovy
-implementation 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
+implementation 'com.kunminx.arch:smooth-navigation:4.0.0'
 ```
 
 如使用 kotlin 拓展，在上述基础上，添加如下依赖即可：
 
 ```groovy
-implementation('androidx.navigation:navigation-fragment-ktx:2.3.2') {
+implementation('androidx.navigation:navigation-fragment-ktx:2.5.0') {
     exclude group: 'androidx.navigation', module: "navigation-fragment"
 }
 ```
@@ -38,13 +37,13 @@ Provides safe and reliable Navigation operations, and solves the common problem 
 - Due to the closure of JCenter, we have migrated the warehouse to Maven Central, so you can add `mavenCentral()` in the root directory build.gradle.
 
 ```groovy
-implementation 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
+implementation 'com.kunminx.arch:smooth-navigation:4.0.0'
 ```
 
 If you use kotlin extension, then on the basis of the above, add the following dependencies:
 
 ```groovy
-implementation('androidx.navigation:navigation-fragment-ktx:2.3.2') {
+implementation('androidx.navigation:navigation-fragment-ktx:2.5.0') {
     exclude group: 'androidx.navigation', module: "navigation-fragment"
 }
 ```
