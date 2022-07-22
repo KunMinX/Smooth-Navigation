@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentChildDBinding;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 
 import java.util.UUID;

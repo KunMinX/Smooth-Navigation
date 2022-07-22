@@ -31,7 +31,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentIndexBinding;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 import com.kunminx.puremusic.ui.base.BaseFragment;
 
 /**

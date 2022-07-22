@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentChildCBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 
 /**
  * Create by KunMinX at 2020/5/30

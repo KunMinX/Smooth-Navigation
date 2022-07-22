@@ -29,10 +29,10 @@ import androidx.lifecycle.ViewModel;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentListBinding;
-import com.kunminx.puremusic.domain.MomentRequest;
+import com.kunminx.puremusic.domain.request.MomentRequest;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 
 import java.util.List;
 

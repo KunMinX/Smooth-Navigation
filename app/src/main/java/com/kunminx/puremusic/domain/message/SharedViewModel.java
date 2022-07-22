@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-package com.kunminx.puremusic.domain;
+package com.kunminx.puremusic.domain.message;
 
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
+import com.kunminx.architecture.ui.callback.UnPeekLiveData;
 import com.kunminx.puremusic.data.bean.Moment;
-
-import java.util.List;
 
 /**
  * Create by KunMinX at 2020/5/30
  */
-public class Request {
+public class SharedViewModel extends ViewModel {
 
-  public interface IMomentRequest {
-
-    LiveData<List<Moment>> getListMutableLiveData();
-
-    void requestList();
-  }
+  public final UnPeekLiveData<Moment> moment = new UnPeekLiveData<>();
 }

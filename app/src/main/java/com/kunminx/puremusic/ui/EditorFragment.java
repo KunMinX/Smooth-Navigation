@@ -32,7 +32,7 @@ import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentEditorBinding;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 
 import java.util.UUID;
 

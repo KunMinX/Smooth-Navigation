@@ -24,7 +24,7 @@ import androidx.databinding.DataBindingUtil;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.ActivityMainBinding;
 import com.kunminx.puremusic.ui.base.BaseActivity;
-import com.kunminx.puremusic.domain.event.SharedViewModel;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 
 /**
  * Create by KunMinX at 19/10/16
