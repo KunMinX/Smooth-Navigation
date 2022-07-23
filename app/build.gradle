@@ -64,7 +64,7 @@ dependencies {
 
     implementation project(':smoothnavigation')
 
-    implementation 'com.kunminx.arch:unpeek-livedata:7.6.0'
+    implementation 'com.github.KunMinX:UnPeek-LiveData:v7.6.0'
 
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
