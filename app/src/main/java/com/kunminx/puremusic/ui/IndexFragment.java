@@ -62,6 +62,12 @@ public class IndexFragment extends BaseFragment {
       @Override
       public void onTabSelected(TabLayout.Tab tab) {
         binding.vp.setCurrentItem(tab.getPosition(), binding.sw.isChecked());
+        int itemId;
+        int position = tab.getPosition();
+        if (position == 0) itemId = R.id.navigation_item1;
+        else if (position == 1) itemId = R.id.navigation_item2;
+        else itemId = R.id.navigation_item3;
+        binding.bottomView.setSelectedItemId(itemId);
       }
 
       @Override
