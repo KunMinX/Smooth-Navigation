@@ -30,8 +30,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.databinding.FragmentDetailBinding;
-import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.domain.message.SharedViewModel;
+import com.kunminx.puremusic.ui.base.BaseFragment;
+
+import java.util.UUID;
 
 /**
  * Create by KunMinX at 2020/5/30
@@ -92,5 +94,6 @@ public class DetailFragment extends BaseFragment {
   public static class DetailViewModel extends ViewModel {
     public final ObservableField<String> content = new ObservableField<>("");
     public final ObservableField<String> location = new ObservableField<>("添加定位");
+    public final ObservableField<String> uuid = new ObservableField<>(UUID.randomUUID().toString());
   }
 }
