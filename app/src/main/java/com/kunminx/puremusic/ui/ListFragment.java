@@ -23,18 +23,17 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentListBinding;
+import com.kunminx.puremusic.domain.message.SharedViewModel;
 import com.kunminx.puremusic.domain.request.MomentRequest;
 import com.kunminx.puremusic.ui.adapter.MomentAdapter;
 import com.kunminx.puremusic.ui.base.BaseFragment;
-import com.kunminx.puremusic.domain.message.SharedViewModel;
-
-import java.util.List;
 
 /**
  * Create by KunMinX at 2020/5/30
@@ -76,12 +75,11 @@ public class ListFragment extends BaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     mMomentRequest.getListMutableLiveData().observe(getViewLifecycleOwner(), moments -> {
-      mState.list.setValue(moments);
+      mState.list.addAll(moments);
     });
 
     mEvent.moment.observe(this, moment -> {
-      mState.list.getValue().add(0, moment);
-      mState.list.setValue(mState.list.getValue());
+      mState.list.add(0, moment);
     });
 
     mMomentRequest.requestList();
@@ -91,13 +89,14 @@ public class ListFragment extends BaseFragment {
     public void fabClick() {
       nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
+
     public void fab2Click() {
       nav().navigate(R.id.action_listFragment_to_indexFragment);
     }
   }
 
   public static class ListViewModel extends ViewModel {
-    public final MutableLiveData<List<Moment>> list = new MutableLiveData<>();
+    public final ObservableArrayList<Moment> list = new ObservableArrayList<>();
     public final MutableLiveData<Boolean> autoScrollToTopWhenInsert = new MutableLiveData<>(true);
   }
 }

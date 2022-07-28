@@ -31,8 +31,8 @@ import androidx.lifecycle.ViewModel;
 import com.kunminx.puremusic.R;
 import com.kunminx.puremusic.data.bean.Moment;
 import com.kunminx.puremusic.databinding.FragmentEditorBinding;
-import com.kunminx.puremusic.ui.base.BaseFragment;
 import com.kunminx.puremusic.domain.message.SharedViewModel;
+import com.kunminx.puremusic.ui.base.BaseFragment;
 
 import java.util.UUID;
 
@@ -81,6 +81,7 @@ public class EditorFragment extends BaseFragment {
         moment.setUserName("KunMinX");
         moment.setLocation(mState.location.get());
         moment.setContent(mState.content.get());
+        moment.setUserAvatar("https://tva1.sinaimg.cn/large/e6c9d24ely1h4exa8m7quj20ju0juaax.jpg");
         mEvent.moment.postValue(moment);
         nav().navigateUp();
       }
@@ -90,6 +91,6 @@ public class EditorFragment extends BaseFragment {
 
   public static class EditorViewModel extends ViewModel {
     public final ObservableField<String> content = new ObservableField<>("");
-    public final ObservableField<String> location = new ObservableField<>("添加定位");
+    public final ObservableField<String> location = new ObservableField<>("台北夜市一条街");
   }
 }
