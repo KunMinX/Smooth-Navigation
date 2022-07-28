@@ -43,11 +43,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/editor_menu"
             app:navigationIcon="@drawable/ic_back"
-            app:title="发布动态" />
+            app:title="详情" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/et"
             drawable_radius="@{12}"
             drawable_solidColor="@{0xFFEEEEEE}"
@@ -82,6 +82,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et" />
 
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="@string/tip_child"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -92,16 +102,8 @@
             app:defaultNavHost="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tip"
             app:navGraph="@navigation/nav_graph_child" />
-
-        <TextView
-            android:id="@+id/tv_tip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="@string/tip_child"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
 
         <Button
             android:id="@+id/btn_single_top"
@@ -112,7 +114,7 @@
             android:onClick="@{()->click.singleTopJump()}"
             android:text="@string/single_top_jump"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
