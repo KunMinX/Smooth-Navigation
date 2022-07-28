@@ -79,6 +79,10 @@ public class DetailFragment extends BaseFragment {
     }
 
     public void singleTopJump() {
+      nav().navigate(R.id.action_detailFragment_to_detailFragment_single_top);
+    }
+
+    public void normalJump() {
       nav().navigate(R.id.action_detailFragment_to_detailFragment);
     }
 
