@@ -17,7 +17,6 @@
 package com.kunminx.puremusic.ui.base;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Handler;
@@ -30,11 +29,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.kunminx.puremusic.App;
+import com.kunminx.architecture.ui.scope.ViewModelScope;
 
 
 /**
@@ -45,10 +43,7 @@ public abstract class BaseFragment extends Fragment {
   private static final Handler HANDLER = new Handler();
   protected AppCompatActivity mActivity;
   protected boolean mAnimationLoaded;
-  private ViewModelProvider mFragmentProvider;
-  private ViewModelProvider mActivityProvider;
-  private ViewModelProvider mApplicationProvider;
-
+  private final ViewModelScope mViewModelScope = new ViewModelScope();
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -72,6 +67,19 @@ public abstract class BaseFragment extends Fragment {
 
   }
 
+  protected <T extends ViewModel> T getFragmentScopeViewModel(@NonNull Class<T> modelClass) {
+    return mViewModelScope.getFragmentScopeViewModel(this, modelClass);
+  }
+
+  protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
+    return mViewModelScope.getActivityScopeViewModel(mActivity, modelClass);
+  }
+
+  protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
+    return mViewModelScope.getApplicationScopeViewModel(modelClass);
+  }
+
+
   public boolean isDebug() {
     return mActivity.getApplicationContext().getApplicationInfo() != null &&
             (mActivity.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
@@ -91,50 +99,6 @@ public abstract class BaseFragment extends Fragment {
 
   protected void showShortToast(int stringRes) {
     showShortToast(mActivity.getApplicationContext().getString(stringRes));
-  }
-
-  protected <T extends ViewModel> T getFragmentScopeViewModel(@NonNull Class<T> modelClass) {
-    if (mFragmentProvider == null) {
-      mFragmentProvider = new ViewModelProvider(this);
-    }
-    return mFragmentProvider.get(modelClass);
-  }
-
-  protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
-    if (mActivityProvider == null) {
-      mActivityProvider = new ViewModelProvider(mActivity);
-    }
-    return mActivityProvider.get(modelClass);
-  }
-
-  protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
-    if (mApplicationProvider == null) {
-      mApplicationProvider = new ViewModelProvider(
-              (App) mActivity.getApplicationContext(), getApplicationFactory(mActivity));
-    }
-    return mApplicationProvider.get(modelClass);
-  }
-
-  private ViewModelProvider.Factory getApplicationFactory(Activity activity) {
-    checkActivity(this);
-    Application application = checkApplication(activity);
-    return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-  }
-
-  private Application checkApplication(Activity activity) {
-    Application application = activity.getApplication();
-    if (application == null) {
-      throw new IllegalStateException("Your activity/fragment is not yet attached to "
-              + "Application. You can't request ViewModel before onCreate call.");
-    }
-    return application;
-  }
-
-  private void checkActivity(Fragment fragment) {
-    Activity activity = fragment.getActivity();
-    if (activity == null) {
-      throw new IllegalStateException("Can't create ViewModelProvider for detached fragment");
-    }
   }
 
   protected NavController nav() {

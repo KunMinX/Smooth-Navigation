@@ -17,7 +17,6 @@
 package com.kunminx.puremusic.ui.base;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -29,9 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.kunminx.puremusic.App;
+import com.kunminx.architecture.ui.scope.ViewModelScope;
 import com.kunminx.puremusic.utils.AdaptScreenUtils;
 import com.kunminx.puremusic.utils.BarUtils;
 import com.kunminx.puremusic.utils.ScreenUtils;
@@ -42,9 +40,7 @@ import com.kunminx.puremusic.utils.ScreenUtils;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-  private ViewModelProvider mActivityProvider;
-  private ViewModelProvider mApplicationProvider;
-
+  private final ViewModelScope mViewModelScope = new ViewModelScope();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +64,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
   }
 
+  protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
+    return mViewModelScope.getActivityScopeViewModel(this, modelClass);
+  }
+
+  protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
+    return mViewModelScope.getApplicationScopeViewModel(modelClass);
+  }
+
   protected void showLongToast(String text) {
     Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
   }
@@ -82,35 +86,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   protected void showShortToast(int stringRes) {
     showShortToast(getApplicationContext().getString(stringRes));
-  }
-
-  protected <T extends ViewModel> T getActivityScopeViewModel(@NonNull Class<T> modelClass) {
-    if (mActivityProvider == null) {
-      mActivityProvider = new ViewModelProvider(this);
-    }
-    return mActivityProvider.get(modelClass);
-  }
-
-  protected <T extends ViewModel> T getApplicationScopeViewModel(@NonNull Class<T> modelClass) {
-    if (mApplicationProvider == null) {
-      mApplicationProvider = new ViewModelProvider((App) this.getApplicationContext(),
-              getAppFactory(this));
-    }
-    return mApplicationProvider.get(modelClass);
-  }
-
-  private ViewModelProvider.Factory getAppFactory(Activity activity) {
-    Application application = checkApplication(activity);
-    return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-  }
-
-  private Application checkApplication(Activity activity) {
-    Application application = activity.getApplication();
-    if (application == null) {
-      throw new IllegalStateException("Your activity/fragment is not yet attached to "
-              + "Application. You can't request ViewModel before onCreate call.");
-    }
-    return application;
   }
 
   protected void toggleSoftInput() {

@@ -43,11 +43,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    configurations {
-        all {
-            exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
-        }
-    }
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -65,6 +60,9 @@ dependencies {
     implementation project(':smoothnavigation')
 
     implementation 'com.github.KunMinX:UnPeek-LiveData:v7.6.0'
+    implementation('com.github.KunMinX:MVI-Dispatcher:v6.0.0-beta') {
+        exclude group: 'com.kunminx.arch', module: 'unpeek-livedata'
+    }
 
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
