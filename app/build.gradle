@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.kunminx.smoothnavigation"
 
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 10000
         versionName "1.0.0"
 
@@ -44,12 +44,12 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    implementation 'androidx.navigation:navigation-runtime:2.5.0'
+    implementation 'androidx.navigation:navigation-runtime:2.5.1'
 
     //使用 kotlin 拓展的话，添加这个依赖即可，
     //通过 exclude 把对官方 java 包的依赖排除了，引用默认指向 smooth-Navigation
@@ -67,7 +67,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
