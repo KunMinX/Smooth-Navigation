@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="xml 语法糖 + BindingAdapter 驱动" />
+            android:text="xml 语法糖 + BindingAdapter 驱动（TabLayout 语法糖在 BindingAdapter 推送时机等因素的作用下，存在某种 bug，ViewPager 与之联动失效，且存在 ViewPager 不显示内容的几率）" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
@@ -72,15 +72,17 @@
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/blue" />
+                android:background="@color/blue"
+                android:text="Page1 内容" />
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/colorAccent" />
+                android:background="@color/colorAccent"
+                android:text="Page2 内容" />
 
         </androidx.viewpager.widget.ViewPager>
 
@@ -90,20 +92,40 @@
             android:layout_marginStart="16dp"
             android:text="xml 语法糖 + 实例方式加载" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="tab1" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="tab2" />
+
+        </com.google.android.material.tabs.TabLayout>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_2"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/blue" />
+                android:background="@color/blue"
+                android:text="Page1 内容" />
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/colorAccent" />
+                android:background="@color/colorAccent"
+                android:text="Page2 内容" />
 
         </androidx.viewpager.widget.ViewPager>
 
@@ -111,23 +133,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="ViewPager 传统 + 实例方式加载" />
+            android:text="完全传统 + 实例方式加载（推荐）" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_3"
             android:layout_width="match_parent"
             android:layout_height="120dp" />
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:text="ViewPager2 实例方式加载" />-->
-
-<!--        <androidx.viewpager2.widget.ViewPager2-->
-<!--            android:id="@+id/vp_4"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="120dp" />-->
 
     </LinearLayout>
 </layout>
