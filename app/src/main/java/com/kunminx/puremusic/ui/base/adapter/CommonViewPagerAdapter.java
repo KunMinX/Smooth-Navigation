@@ -16,13 +16,14 @@
 
 package com.kunminx.puremusic.ui.base.adapter;
 
-
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
+
+import java.util.List;
 
 /**
  * Create by KunMinX at 19/6/15
@@ -32,8 +33,19 @@ public class CommonViewPagerAdapter extends PagerAdapter {
   private final int count;
   private final boolean enableDestroyItem;
   private final String[] title;
+  private List<View> mViews;
+  private final boolean childAtXml;
+
+  public CommonViewPagerAdapter(boolean enableDestroyItem, List<View> views, String[] title) {
+    this.mViews = views;
+    this.childAtXml = false;
+    this.title = title;
+    this.count = title.length;
+    this.enableDestroyItem = enableDestroyItem;
+  }
 
   public CommonViewPagerAdapter(boolean enableDestroyItem, String[] title) {
+    this.childAtXml = true;
     this.count = title.length;
     this.enableDestroyItem = enableDestroyItem;
     this.title = title;
@@ -52,7 +64,12 @@ public class CommonViewPagerAdapter extends PagerAdapter {
   @NonNull
   @Override
   public Object instantiateItem(@NonNull ViewGroup container, int position) {
-    return container.getChildAt(position);
+    if (childAtXml) return container.getChildAt(position);
+    else {
+      View view = mViews.get(position);
+      container.addView(view);
+      return view;
+    }
   }
 
   @Override

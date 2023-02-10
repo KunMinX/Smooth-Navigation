@@ -90,6 +90,10 @@ public class ListFragment extends BaseFragment {
       nav().navigate(R.id.action_listFragment_to_editorFragment);
     }
 
+    public void fab1Click() {
+      nav().navigate(R.id.action_listFragment_to_viewPagerFragment);
+    }
+
     public void fab2Click() {
       nav().navigate(R.id.action_listFragment_to_indexFragment);
     }

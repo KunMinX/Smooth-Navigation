@@ -22,11 +22,26 @@ public class TabPageBindingAdapter {
         title[i] = tab.getText().toString();
       }
     }
-    ViewPager viewPager = (tabLayout.getRootView()).findViewById(R.id.vp);
+    ViewPager viewPager = (tabLayout.getRootView()).findViewById(R.id.vp_1);
     if (viewPager != null) {
       viewPager.setAdapter(new CommonViewPagerAdapter(false, title));
       tabLayout.setupWithViewPager(viewPager);
     }
+  }
+
+  @BindingAdapter(value = {"initPage"}, requireAll = false)
+  public static void initPage(ViewPager viewPager, boolean initTabAndPage) {
+    TabLayout tabLayout = (viewPager.getRootView()).findViewById(R.id.tab);
+    int count = tabLayout.getTabCount();
+    String[] title = new String[count];
+    for (int i = 0; i < count; i++) {
+      TabLayout.Tab tab = tabLayout.getTabAt(i);
+      if (tab != null && tab.getText() != null) {
+        title[i] = tab.getText().toString();
+      }
+    }
+    viewPager.setAdapter(new CommonViewPagerAdapter(false, title));
+    tabLayout.setupWithViewPager(viewPager);
   }
 
   @BindingAdapter(value = {"tabSelectedListener"}, requireAll = false)

@@ -49,6 +49,14 @@
             app:popEnterAnim="@anim/h_fragment_pop_enter"
             app:popExitAnim="@anim/h_fragment_pop_exit" />
 
+        <action
+            app:enterAnim="@anim/h_fragment_enter"
+            app:exitAnim="@anim/h_fragment_exit"
+            app:popEnterAnim="@anim/h_fragment_pop_enter"
+            app:popExitAnim="@anim/h_fragment_pop_exit"
+            android:id="@+id/action_listFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+
     </fragment>
 
     <fragment
@@ -111,5 +119,18 @@
         android:name="com.kunminx.puremusic.ui.SecondFragment"
         android:label="SecondFragment"
         tools:layout="@layout/fragment_second" />
+
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.kunminx.puremusic.ui.ViewPagerFragment"
+        android:label="ViewPagerFragment">
+        <action
+            android:id="@+id/action_viewPagerFragment_self"
+            app:destination="@id/viewPagerFragment"
+            app:enterAnim="@anim/h_fragment_enter"
+            app:exitAnim="@anim/h_fragment_exit"
+            app:popEnterAnim="@anim/h_fragment_pop_enter"
+            app:popExitAnim="@anim/h_fragment_pop_exit" />
+    </fragment>
 
 </navigation>
